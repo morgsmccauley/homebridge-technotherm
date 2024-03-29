@@ -90,6 +90,13 @@ export class Technotherm implements DynamicPlatformPlugin {
                   this.log.warn(`existing accessory: ${error}`);
                 }
               } else {
+                // If the node has been renamed, update the corresponding accessory
+                if (existingAccessory.displayName !== accessoryName) {
+                  this.log.info(`Renaming accessory from ${existingAccessory.displayName} to ${accessoryName}`);
+                  existingAccessory.displayName = accessoryName;
+                  this.api.updatePlatformAccessories([existingAccessory]);
+                }
+
                 // Accessory exists, restore from cache
                 this.log.info('Restoring existing accessory from cache:', existingAccessory.displayName);
                 new Radiator(this, existingAccessory, helki);
