@@ -76,8 +76,10 @@ export class Technotherm implements DynamicPlatformPlugin {
 
           // Devices can have multiple nodes, register an accessory for each
           for (const node of nodes) {
+            // Use Node attributes for the accessory display name and UUID gen
+            // but fallback to Device attributes in case they're undefined (i.e. Devices with a single node)
             const accessoryName = node.name || device.name;
-            const accessoryUUID = this.api.hap.uuid.generate(node.uid); // Use dev_id to generate a UUID
+            const accessoryUUID = this.api.hap.uuid.generate(node.uid || device.dev_id);
             const existingAccessory = this.accessories.find(accessory => accessory.UUID === accessoryUUID);
 
             if (existingAccessory) {
