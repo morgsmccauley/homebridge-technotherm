@@ -34,6 +34,7 @@ interface Node {
   addr: string;
   installed?: boolean;
   lost?: boolean;
+  uid?: string;
 }
 
 interface GroupedDevices {
