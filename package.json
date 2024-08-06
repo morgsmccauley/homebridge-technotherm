@@ -1,6 +1,6 @@
 {
   "displayName": "Technotherm",
-  "name": "homebridge-technotherm",
+  "name": "homebridge-lhz",
   "version": "1.2.0",
   "description": "Controls for Technotherm electric radiators.",
   "license": "Apache-2.0",
